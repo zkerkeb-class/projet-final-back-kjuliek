@@ -16,6 +16,7 @@ export const getCurrentUser = async (req, res) => {
     if (!user) {
       return res.status(404).send({ message: "User not found" });
     }
+    console.log("get user", user); //julie
     res.status(200).send({ user: user });
   } catch (error) {
     console.error("JWT decode error:", error);
@@ -25,7 +26,6 @@ export const getCurrentUser = async (req, res) => {
 
 // PUT /api/me
 export const updateCurrentUser = async (req, res) => {
-  const { username, mail, password, colonies } = req.body;
   try {
     const token = req.headers.authorization?.split(" ")[1];
     if (!token) {

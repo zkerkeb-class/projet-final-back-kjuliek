@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 
 import { register, login, logout } from "./controllers/authController.js"
 import { getCurrentUser, updateCurrentUser, deleteCurrentUser } from "./controllers/userController.js";
+import { addColony, getAllColony, getByIdColony, updateColony, deleteColony } from "./controllers/colonyController.js";
 import verifyToken from "./middlewares/verifytoken.js";
 
 dotenv.config();
@@ -62,15 +63,15 @@ app.put("/api/me", verifyToken, updateCurrentUser);
 
 app.delete("/api/me", verifyToken, deleteCurrentUser);
 
-app.post("/api/me/colonies/", verifyToken, addColony);
+app.post("/api/colonies", verifyToken, addColony);
 
-app.get("/api/me/colonies", verifyToken, getAllColony);
+app.get("/api/colonies", verifyToken, getAllColony);
 
-app.get("/api/me/colonies/:colonyId", verifyToken, getByIdColony);
+app.get("/api/colonies/:colonyId", verifyToken, getByIdColony);
 
-app.put("/api/me/colonies/:colonyId", verifyToken, updateColony);
+app.put("/api/colonies/:colonyId", verifyToken, updateColony);
 
-app.delete("/api/me/colonies/:colonyId", verifyToken, deleteColony);
+app.delete("/api/colonies/:colonyId", verifyToken, deleteColony);
 
 
 
