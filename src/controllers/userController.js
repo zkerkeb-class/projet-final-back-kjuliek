@@ -16,7 +16,6 @@ export const getCurrentUser = async (req, res) => {
     if (!user) {
       return res.status(404).send({ message: "User not found" });
     }
-    console.log("get user", user); //julie
     res.status(200).send({ user: user });
   } catch (error) {
     console.error("JWT decode error:", error);
