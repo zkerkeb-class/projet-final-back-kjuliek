@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 import User from "../schema/user.js";
 
@@ -36,6 +37,11 @@ export const updateCurrentUser = async (req, res) => {
 
     if (!user) {
         return res.status(404).send({ message: "User not found" });
+    }
+
+    if (req.body.password) {
+      const password = req.body.password;
+      req.body.password = await bcrypt.hash(password, 10);
     }
     const updated = await User.findByIdAndUpdate(decoded.id, req.body, { new: true });
     res.status(200).json(updated);
